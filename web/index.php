@@ -28,7 +28,7 @@
       <h1>Големи градове</h1>
       <table>
         <?php
-          require_once ('config.php');
+          require_once ('db_config.php');
 
           try {
               $connection = new PDO("mysql:host={$host};dbname={$database};charset=utf8", $user, $password);
