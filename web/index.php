@@ -27,26 +27,29 @@
       <br />
       <h1>Големи градове</h1>
       <table>
-<?php
-   require_once ('config.php');
+        <?php
+          require_once ('config.php');
 
-   try {
-      $connection = new PDO("mysql:host={$host};dbname={$database};charset=utf8", $user, $password);
-      $query = $connection->query("SELECT city_name, population FROM cities ORDER BY population DESC");
-      $cities = $query->fetchAll();
+          try {
+              $connection = new PDO("mysql:host={$host};dbname={$database};charset=utf8", $user, $password);
+              $query = $connection->query("SELECT city_name, population FROM cities ORDER BY population DESC");
+              $cities = $query->fetchAll();
 
-      if (empty($cities)) {
-         echo "<tr><td>Няма данни.</td></tr>\n";
-      } else {
-         foreach ($cities as $city) {
-            print "<tr><td>{$city['city_name']}</td><td align=\"right\">{$city['population']}</td></tr>\n";
-         }
-      }
-   }
-   catch (PDOException $e) {
-      print "<tr><td>Няма връзка към базата. Опитайте отново.</td></tr>\n";
-   }
-?>
+              if (empty($cities)) {
+                echo "<tr><td>Няма данни.</td></tr>\n";
+              } else {
+                foreach ($cities as $city) {
+                    print "<tr><td>{$city['city_name']}</td><td align=\"right\">{$city['population']}</td></tr>\n";
+                }
+              }
+          }
+          catch (PDOException $e) {
+              print "<tr><td>Няма връзка към базата. Опитайте отново.</td></tr>\n";
+          }
+          if (getenv('APP_MODE')) print "Running in ".getenv('APP_MODE')." mode.<br />\n";
+          print "<hr />\n";
+          print "<small><i>Served by: <b>".gethostname()."</b></i></small>\n";
+        ?>
       </table>
     </div>
   </body>
