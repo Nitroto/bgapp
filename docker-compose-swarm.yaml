@@ -3,11 +3,12 @@ services:
     web:
         image: nitroto/bgapp-web
         deploy:
-            replicas: 5
+            replicas: 3
         ports:
             - 8080:80
         volumes:
             - "${PROJECT_ROOT}:/var/www/html:ro"
+            - "${PROJECT_ROOT}/default.conf:/etc/nginx/conf.d/server.conf"
         networks:
             - app-network
     db:

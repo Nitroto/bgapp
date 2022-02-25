@@ -1,4 +1,4 @@
-ARG MARIADB_VERSION=1.7
+ARG MARIADB_VERSION=10.7
 FROM mariadb:${MARIADB_VERSION}
 LABEL Maintainer="AsTodorov"
 ADD ./db/db_setup.sql /docker-entrypoint-initdb.d/init.sql
